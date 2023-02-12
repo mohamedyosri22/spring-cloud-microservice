@@ -1,6 +1,7 @@
 package com.spring.football.model;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 @Entity
 @Table(name="player")
@@ -18,6 +19,9 @@ public class PlayerTeam {
 
     private int moneyTeam;
 
+    @Transient
+    private String port;
+
     public PlayerTeam() {
     }
 
@@ -27,6 +31,14 @@ public class PlayerTeam {
         this.to = to;
         this.moneyPlayer = moneyPlayer;
         this.moneyTeam = moneyTeam;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 
     public Long getId() {

@@ -1,6 +1,6 @@
 package com.spring.team.controller;
 
-import com.spring.team.config.ApiCall;
+import com.spring.team.config.Proxy;
 import com.spring.team.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.Map;
 @RequestMapping("/team-players")
 public class TeamController {
     @Autowired
-    private ApiCall apiCall;
+    private Proxy proxy;
 
     @GetMapping("/team/{from}/player/{to}")
     public Team teamWithPlayer(@PathVariable String from,@PathVariable String to){
@@ -25,7 +25,7 @@ public class TeamController {
         urlAttribute.put("to",to);
 
         var callApi = new RestTemplate().getForEntity(
-                "http://localhost:9092/football-players/buy/{from}/club/{to}",
+                "http://localhost:9094/football-players/buy/{from}/club/{to}",
                 Team.class,urlAttribute
         );
 
@@ -38,7 +38,7 @@ public class TeamController {
 
     @GetMapping("/teamNew/{from}/player/{to}")
     public Team teamWithPlayerNew(@PathVariable String from,@PathVariable String to){
-        Team teamResponse = apiCall.getFootballPlayer(from,to);
+        Team teamResponse = proxy.getFootballPlayer(from,to);
         teamResponse.setNumberTeam("5000");
         teamResponse.setNote("NONE");
 
