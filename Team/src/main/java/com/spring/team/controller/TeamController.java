@@ -1,8 +1,10 @@
 package com.spring.team.controller;
 
+import com.netflix.discovery.EurekaClient;
 import com.spring.team.config.Proxy;
 import com.spring.team.model.Team;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +27,14 @@ public class TeamController {
         urlAttribute.put("to",to);
 
         var callApi = new RestTemplate().getForEntity(
-                "http://localhost:9094/football-players/buy/{from}/club/{to}",
+                "http://localhost:9092/football-players/buy/{from}/club/{to}",
                 Team.class,urlAttribute
         );
 
 
 
         Team team = new Team(callApi.getBody().getId(),callApi.getBody().getFrom(),callApi.getBody().getTo(),callApi.getBody().getMoneyTeam(),"NONE","50");
-
+        team.setPort(callApi.getBody().getPort());
         return team;
     }
 

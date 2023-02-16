@@ -1,5 +1,6 @@
 package com.spring.football.controller;
 
+import com.netflix.discovery.EurekaClient;
 import com.spring.football.model.PlayerTeam;
 import com.spring.football.repository.PlayerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
