@@ -45,8 +45,7 @@
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-			<version>1.4.7.RELEASE</version>
+			<artifactId>spring-cloud-starter-loadbalancer</artifactId>
 		</dependency>
 
 		<dependency>
