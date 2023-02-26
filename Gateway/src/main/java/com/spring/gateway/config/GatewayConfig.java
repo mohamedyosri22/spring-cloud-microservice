@@ -17,6 +17,7 @@ public class GatewayConfig {
                         )
                         .uri("http://httpbin.org:88/"))
                 .route(p->p.path("/football-players/**").uri("lb://football-players/"))
+                //.route(p->p.path("/controller-get-mapping/**").uri("lb://service-name"))
                 .route(p->p.path("/team-players/**").uri("lb://teams-service/"))
 
                 .route(p->p.path("/team/**")
